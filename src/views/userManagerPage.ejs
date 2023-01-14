@@ -44,12 +44,10 @@
                         <%=dataUser[i].lastName%>
                     </td>
                     <td>
-                        <img src="../public/avatarUser/<%=dataUser[i].avatar%>" alt="#" style="height: 100;">
+                        <!-- <img src="nodejs_basic/public/avatarUser/<%=dataUser[i].avatar%>" alt="#" style="height: 100;"> -->
                         <img src="http://localhost:8080/static/avatarUser/<%=dataUser[i].avatar%>" alt="#"
                             style="height: 100;">
-                        <p>
-                            <%=dataUser[i].avatar%>
-                        </p>
+
                     </td>
                     <td><a href="/users/detail/<%=dataUser[i].id%>" class="fa fa-bars"></a></td>
                     <td>
