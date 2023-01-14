@@ -1,6 +1,6 @@
 import express from "express"
-import homeController from "../controller/homeController"
-import userController from "../controller/userController"
+import homeController from "../controller/home.Controller"
+import userController from "../controller/user.Controller"
 const router = express.Router()
 
 

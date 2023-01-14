@@ -116,7 +116,24 @@ const imageFilter = function (req, file, cb) {
 
 
 
+
+let getAllUser = async (req, res) => {
+    const [rows, fields] = await pool.execute('SELECT * FROM user');
+    return res.send(JSON.stringify(rows))
+}
+
+let searchUser = async (req, res) => {
+    const query = req.params.query || ""
+    try {
+        const [rows, fields] = await pool.execute(`SELECT * FROM user where firstName like  '%${query}%' or lastName like  '%${query}%'`);
+
+        return res.send(JSON.stringify(rows))
+    } catch (err) {
+        res.status(400).send(err);
+    }
+}
+
 module.exports = {
-    getUserManagerPage, getDetailPage, createNewUser, deleteUser, getPageEditUser, postUpdateUser,
+    searchUser, getAllUser, getUserManagerPage, getDetailPage, createNewUser, deleteUser, getPageEditUser, postUpdateUser
 }
 
