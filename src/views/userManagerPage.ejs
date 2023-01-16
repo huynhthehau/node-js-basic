@@ -1,0 +1,139 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="#home">Home</a>
+        <a class="active" href="#news">Users</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Address</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Avatar</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(var i=0; i < dataUser.length; i++) {%>
+                <tr>
+                    <td>
+                        <%= dataUser[i].email%>
+                    </td>
+                    <td>
+                        <%=dataUser[i].address%>
+                    </td>
+                    <td>
+                        <%=dataUser[i].firstName%>
+                    </td>
+                    <td>
+                        <%=dataUser[i].lastName%>
+                    </td>
+                    <td>
+                        <!-- <img src="nodejs_basic/public/avatarUser/<%=dataUser[i].avatar%>" alt="#" style="height: 100;"> -->
+                        <img src="http://localhost:8080/static/avatarUser/<%=dataUser[i].avatar%>" alt="#"
+                            style="height: 100;">
+
+                    </td>
+                    <td><a href="/users/detail/<%=dataUser[i].id%>" class="fa fa-bars"></a></td>
+                    <td>
+                        <form action="/users/edit_user/<%=dataUser[i].id%>" method="get">
+                            <button type="submit"><i class="fa fa-edit"></i></button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/users/delete_user" method="post">
+                            <input type="text" name="id" value="<%=dataUser[i].id%>" hidden>
+                            <button type="submit"><i class="fa fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</body>
+
+<div class="create-form">
+    <h1>Create user</h1>
+    <form action="/users/create_user" method="post" enctype="multipart/form-data">
+        <label for="fname">Email:</label><br>
+        <input type="email" id="fname" name="email"><br>
+        <label for="lname">Address:</label><br>
+        <input type="text" id="lname" name="address"><br><br>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="firstName"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lastName"><br><br>
+        <label for="lname">Avatar:</label><br>
+        <input type="file" name="avatar" /> <br>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+</html>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+        background-color: grey;
+    }
+
+    .create-form {
+        margin-top: 40px;
+        text-align: center;
+    }
+</style>
