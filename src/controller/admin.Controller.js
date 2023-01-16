@@ -1,6 +1,8 @@
 import pool from "../configs/DBconnect"
 import bcrypt from "bcryptjs"
 const Admin = require('../model/admin.model')
+require("dotenv").config();
+import jwt from "jsonwebtoken"
 
 let registerAdmin = async (req, res) => {
     let { account, password, avatar } = req.body;
@@ -34,7 +36,9 @@ let loginAdmin = async (req, res) => {
     if (!checkPassword) {
         res.status(422).send('Account or Password is not correct')
     }
-    return res.send(`User ${rows[0].account} has logged in`);
+    const token = jwt.sign({ _id: rows[0].id }, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 });
+    res.header('auth-token', token).send(`User ${rows[0].account} has logged in`);
+    // return res.send(`User ${rows[0].account} has logged in`);
 
 }
 
