@@ -3,7 +3,9 @@ import express from "express";
 const app = express()
 import configViewEngine from "./configs/viewEngine";
 import router from "./router/index"
+
 import session from "express-session"
+
 require("dotenv").config();
 
 const port = process.env.PORT || 8080;
@@ -14,7 +16,7 @@ app.use(express.json())
 app.use(session({
     secret: 'keyboard cat',
     resave: false, // đặt lại cookie cho mỗi req ex:
-    saveUninitialized: true, // tạo 1 cookie connect.sid
+    saveUninitialized: false, // tạo 1 cookie connect.sid
     cookie: { secure: false, maxAge: 5 * 60 * 1000 }
 }))
 

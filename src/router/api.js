@@ -21,4 +21,14 @@ router.get('/set-session', (req, res) => {
     res.send('set session!!')
 })
 
+router.get('/download/:file(*)', (req, res) => {
+    res.download(req.params.file, { root: __dirname }, function (err) {
+        if (!err) return; // file sent
+        if (err.status !== 404) return next(err); // non-404 error
+        // file for download not found
+        res.statusCode = 404;
+        res.send('Cant find that file, sorry!');
+    });
+})
+
 module.exports = router;
