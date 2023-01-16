@@ -36,7 +36,12 @@ let loginAdmin = async (req, res) => {
     if (!checkPassword) {
         res.status(422).send('Account or Password is not correct')
     }
-    const token = jwt.sign({ _id: rows[0].id }, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 });
+    console.log(rows[0].id)
+    // const token = jwt.sign({ id: rows[0].id }, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 * 24 });
+    const token = jwt.sign({
+        exp: 60 * 60 * 24,
+        data: rows[0].id
+    }, process.env.TOKEN_SECRET);
     res.header('auth-token', token).send(`User ${rows[0].account} has logged in`);
     // return res.send(`User ${rows[0].account} has logged in`);
 
