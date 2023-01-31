@@ -4,9 +4,13 @@ const path = require('path');
 const fs = require('fs');
 let getUserManagerPage = async (req, res) => {
     const [rows, fields] = await pool.execute('SELECT * FROM user');
-    return res.render("./userManagerPage.ejs", { dataUser: rows })
+    return res.render("./userManagerPage.ejs", { dataUser: rows, count: req.count })
 }
-
+let countUsers = async (req, res, next) => {
+    const [rows, fields] = await pool.execute('SELECT COUNT(*) FROM user');
+    req.count = rows[0]['COUNT(*)']
+    next()
+}
 let getDetailPage = async (req, res) => {
     let id = req.params.userId;
     const [rows, fields] = await pool.execute('SELECT * FROM user WHERE id =?', [id]);
@@ -134,6 +138,6 @@ let searchUser = async (req, res) => {
 }
 
 module.exports = {
-    searchUser, getAllUser, getUserManagerPage, getDetailPage, createNewUser, deleteUser, getPageEditUser, postUpdateUser
+    searchUser, getAllUser, getUserManagerPage, getDetailPage, createNewUser, deleteUser, getPageEditUser, postUpdateUser, countUsers
 }
 

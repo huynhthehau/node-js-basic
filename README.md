@@ -22,17 +22,18 @@ Learn express_basic
 - downloads - Transferring files to client - done
 - error - Working with error middleware - done
 - route-middleware - Working with route middleware - done
-```
-```
-- view-locals - Saving data in request object between middleware calls
+- route-map - Organizing routes using a map - done
+- route-separation - Organizing routes per each resource - done
+- view-locals - Saving data in request object between middleware calls - done
 
+```
+```
 - resource - Multiple HTTP operations on the same resource
 - vhost - Working with virtual hosts
 - view-constructor - Rendering views dynamically
 - web-service - Simple API service
 - online - Tracking online user activity with online and redis packages
-- route-map - Organizing routes using a map
-- route-separation - Organizing routes per each resource
+
 
 
 

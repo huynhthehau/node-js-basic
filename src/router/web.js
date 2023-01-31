@@ -5,7 +5,7 @@ const router = express.Router()
 
 
 router.get('/home', homeController.getHomePage)
-router.get('/users', userController.getUserManagerPage)
+router.get('/users', userController.countUsers, userController.getUserManagerPage)
 router.get('/users/detail/:userId', userController.getDetailPage)
 // router.post('/users/create_user', userController.createNewUser)
 router.post('/users/create_user', userController.createNewUser)
