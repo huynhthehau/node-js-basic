@@ -21,11 +21,11 @@ Learn express_basic
 - cookies - Working with cookies - done
 - downloads - Transferring files to client - done
 - error - Working with error middleware - done
-
+- route-middleware - Working with route middleware - done
 ```
 ```
 - view-locals - Saving data in request object between middleware calls
-- route-middleware - Working with route middleware
+
 - resource - Multiple HTTP operations on the same resource
 - vhost - Working with virtual hosts
 - view-constructor - Rendering views dynamically
