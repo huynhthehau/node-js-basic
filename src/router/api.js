@@ -6,6 +6,7 @@ import middleware from '../configs/middleware'
 
 router.post('/register', adminController.registerAdmin)
 router.post('/login', adminController.loginAdmin)
+
 router.get('/user/getAllUser', middleware.verifyToken, userController.getAllUser)
 router.get('/user/search/:query?', middleware.verifyToken, userController.searchUser)
 
@@ -18,7 +19,7 @@ router.get('/set-session', (req, res) => {
         age: 21,
         avatar: "#"
     }
-    res.send('set session!!')
+    res.send(req.session.user)
 })
 
 router.get('/download/:file(*)', (req, res) => {
